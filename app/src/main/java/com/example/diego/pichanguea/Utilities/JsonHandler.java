@@ -11,28 +11,29 @@ import org.json.JSONObject;
 
 public class JsonHandler {
 
-    public void getInformacion(String datos, Usuario usuario){
+    public Usuario getInformacion(String datos, Usuario usuario){
         try{
             JSONObject jo = new JSONObject(datos);
-            System.out.println("lenghth"+jo.length());
-            usuario.setNombreUsuario(jo.getJSONObject("usuario").getString("nombreUsuario"));
-            usuario.setClave(jo.getJSONObject("usuario").getString("clave"));
-            usuario.setRutSinDigito(jo.getJSONObject("usuario").getString("rutSinDigito"));
-            usuario.setRutConDigito(jo.getJSONObject("usuario").getString("rutConDigito"));
-            usuario.setNombre(jo.getJSONObject("usuario").getString("nombre"));
-            usuario.setPaterno(jo.getJSONObject("usuario").getString("paterno"));
-            usuario.setMaterno(jo.getJSONObject("usuario").getString("materno"));
-            usuario.setCelular(jo.getJSONObject("usuario").getString("celular"));
-            usuario.setMail(jo.getJSONObject("usuario").getString("mail"));
-            usuario.setApodo(jo.getJSONObject("usuario").getString("apodo"));
-            usuario.setId(jo.getJSONObject("usuario").getString("id"));
 
-            //return usuario;
+            usuario.setNombreUsuario(jo.getJSONObject("jugador").getString("jugUsername"));
+            usuario.setClave(jo.getJSONObject("jugador").getString("jugPassword"));
+            usuario.setRutSinDigito(jo.getJSONObject("jugador").getString("jugRut"));
+            usuario.setRutConDigito(jo.getJSONObject("jugador").getString("jugRutDv"));
+            usuario.setNombre(jo.getJSONObject("jugador").getString("jugNombre"));
+            usuario.setPaterno(jo.getJSONObject("jugador").getString("jugPaterno"));
+            usuario.setMaterno(jo.getJSONObject("jugador").getString("jugMaterno"));
+            usuario.setCelular(jo.getJSONObject("jugador").getString("jugFono"));
+            usuario.setMail(jo.getJSONObject("jugador").getString("jugEmail"));
+            usuario.setApodo(jo.getJSONObject("jugador").getString("jugApodo"));
+            usuario.setId(jo.getJSONObject("jugador").getString("idJugador"));
+
+            return usuario;
         }
         catch (JSONException e) {
             Log.e("ERROR", this.getClass().toString() + " " + e.toString());
         }
         //return null;
+        return usuario;
     }
     public JSONObject setRegister(Usuario usuario) {
         // build jsonObject

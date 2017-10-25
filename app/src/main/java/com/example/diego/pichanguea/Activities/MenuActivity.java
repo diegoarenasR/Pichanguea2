@@ -55,7 +55,8 @@ public class MenuActivity extends AppCompatActivity
         JsonHandler jh= new JsonHandler();
         Usuario usuario = new Usuario();
 
-        //jh.getInformacion(resultado,usuario);
+        jh.getInformacion(resultado,usuario );
+        System.out.println(usuario.getMail());
         //ystem.out.println("nombre de usuario: "+usuario.getNombreUsuario());
         //TextView dispNombre =(TextView)header.findViewById(R.id.dispNombre);
         //dispNombre.setText(usuario.getNombre());
@@ -113,4 +114,6 @@ public class MenuActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

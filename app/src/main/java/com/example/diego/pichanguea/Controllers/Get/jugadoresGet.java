@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.diego.pichanguea.Activities.MenuActivity;
+import com.example.diego.pichanguea.Models.Usuario;
 import com.example.diego.pichanguea.Utilities.SSLTrust;
 import com.example.diego.pichanguea.Utilities.JsonHandler;
 import java.io.IOException;
@@ -47,9 +48,6 @@ public class jugadoresGet extends AsyncTask<String, Void, String> {
         return null;
     }// doInBackground(String... urls)
     protected void onPostExecute(String result) {
-        //System.out.println(result);
-        JsonHandler jh= new JsonHandler();
-        //String[] comentarios=jh.getComentarios(result);
-        //crear_comentario.mostrarEnLista(comentarios,result);
+
     }
 }
