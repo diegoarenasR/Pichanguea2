@@ -8,6 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 
 public class JsonHandler {
 
@@ -26,6 +28,8 @@ public class JsonHandler {
             usuario.setMail(jo.getJSONObject("jugador").getString("jugEmail"));
             usuario.setApodo(jo.getJSONObject("jugador").getString("jugApodo"));
             usuario.setId(jo.getJSONObject("jugador").getString("idJugador"));
+            usuario.setToken(jo.getString("token"));
+
 
             return usuario;
         }
@@ -35,6 +39,27 @@ public class JsonHandler {
         //return null;
         return usuario;
     }
+
+    public String[] getPartidos(String datos){
+        try {
+            JSONArray ja = new JSONArray(datos);
+            String[] result = new String[10];
+            String actor;
+            for (int i = 0; i < 10; i++) {
+                JSONObject row = ja.getJSONObject(i);
+                actor =row.getJSONObject("partido").getJSONObject("equipo").getString("equNombre")+"            "+row.getJSONObject("partido").getJSONObject("tipoPartido").getString("tpaNombre");
+                result[i] = actor;
+
+            }
+            return result;
+        } catch (JSONException e) {
+            Log.e("ERROR", this.getClass().toString() + " " + e.toString());
+        }
+        return null;
+
+    }
+
+
     public JSONObject setRegister(Usuario usuario) {
         // build jsonObject
         JSONObject jsonObject = new JSONObject();

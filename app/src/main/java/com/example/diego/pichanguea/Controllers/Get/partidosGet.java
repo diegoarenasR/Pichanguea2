@@ -4,8 +4,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.diego.pichanguea.Activities.LoginActivity;
-
+import com.example.diego.pichanguea.Activities.MenuActivity;
+import com.example.diego.pichanguea.Models.Usuario;
 import com.example.diego.pichanguea.Utilities.SSLTrust;
 import com.example.diego.pichanguea.Utilities.JsonHandler;
 import java.io.IOException;
@@ -15,12 +15,16 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Scanner;
 
-public class sesionGet extends AsyncTask<String, Void, String>  {
-    //private SSLTrust sT;
-    private LoginActivity login_activity;
+/**
+ * Created by diego on 05-10-2017.
+ */
+
+public class partidosGet extends AsyncTask<String, Void, String> {
+    private SSLTrust sT;
+    private MenuActivity menu_activity;
     Toast toast;
-    public sesionGet(LoginActivity login_activity){
-        this.login_activity=login_activity;
+    public partidosGet(MenuActivity menu_activity){
+        this.menu_activity=menu_activity;
     }
     @Override
     protected String doInBackground(String...url) {
@@ -33,9 +37,7 @@ public class sesionGet extends AsyncTask<String, Void, String>  {
             connection.setRequestMethod("GET");
             connection.setDoInput(true);
             connection.connect();
-
             return new Scanner(connection.getInputStream(), "UTF-8").useDelimiter("\\A").next();
-
         } catch (MalformedURLException e) {
             Log.e("ERROR", this.getClass().toString() + " " + e.toString());
         } catch (ProtocolException e) {
@@ -46,10 +48,7 @@ public class sesionGet extends AsyncTask<String, Void, String>  {
         return null;
     }// doInBackground(String... urls)
     protected void onPostExecute(String result) {
-
         System.out.println(result);
-        //JsonHandler jh= new JsonHandler();
-
-        login_activity.logear(result);
+        menu_activity.mostrarPartidos(result);
     }
 }

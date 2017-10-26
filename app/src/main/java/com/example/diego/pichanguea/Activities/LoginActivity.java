@@ -155,7 +155,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     }
     private void attemptLogin() {
-        new sesionGet(this).execute(getResources().getString(R.string.servidor)+"api/Sesion?usuario=Fco&pass=clave");
+        new sesionGet(this).execute(getResources().getString(R.string.servidor)+"api/Sesion?usuario=jquevedog&pass=qL0EXUkr/8sHV0xU/d5WZg==");
 
         if (mAuthTask != null) {
             return;
@@ -200,7 +200,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
-            new sesionGet(this).execute(getResources().getString(R.string.servidor)+"sesion?usuario=Fco&pass=clave");
+            new sesionGet(this).execute(getResources().getString(R.string.servidor)+"Sesion?usuario=jquevedog&pass=qL0EXUkr/8sHV0xU/d5WZg");
         }
     }
 

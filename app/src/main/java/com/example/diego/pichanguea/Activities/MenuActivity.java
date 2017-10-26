@@ -12,9 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.diego.pichanguea.Controllers.Get.jugadoresGet;
+import com.example.diego.pichanguea.Controllers.Get.partidosGet;
+import com.example.diego.pichanguea.Controllers.Get.sesionGet;
 import com.example.diego.pichanguea.Models.Usuario;
 import com.example.diego.pichanguea.R;
 import com.example.diego.pichanguea.Utilities.JsonHandler;
@@ -50,16 +54,23 @@ public class MenuActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        ListView simpleList;
+
         View header=navigationView.getHeaderView(0);
         String resultado=getIntent().getExtras().getString("parametro");
         JsonHandler jh= new JsonHandler();
         Usuario usuario = new Usuario();
-
         jh.getInformacion(resultado,usuario );
-        System.out.println(usuario.getMail());
-        //ystem.out.println("nombre de usuario: "+usuario.getNombreUsuario());
-        //TextView dispNombre =(TextView)header.findViewById(R.id.dispNombre);
-        //dispNombre.setText(usuario.getNombre());
+
+
+        new partidosGet(this).execute(getResources().getString(R.string.servidor)+"api/Jugador/1/Partidos");
+
+
+
+        String countryList[] = {"India", "China", "australia", "Portugle", "America", "NewZealand"};
+
+
+
     }
 
     @Override
@@ -116,4 +127,15 @@ public class MenuActivity extends AppCompatActivity
     }
 
 
+    public void mostrarPartidos(String result) {
+        JsonHandler jh= new JsonHandler();
+        String[] listaPartidos=jh.getPartidos(result);
+        System.out.println(listaPartidos.length);
+        ListView simpleList = (ListView) findViewById(R.id.listPartidos);
+        String countryList[] = {"India", "China", "australia", "Portugle", "America", "NewZealand"};
+        System.out.println(countryList[0]);
+        ArrayAdapter adapter = new ArrayAdapter<String>(this,R.layout.listview_layout,R.id.textView,listaPartidos);
+        simpleList.setAdapter(adapter);
+
+    }
 }
